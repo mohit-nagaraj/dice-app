@@ -1,0 +1,51 @@
+import 'package:flutter/material.dart';
+import 'package:first_app/styled_text.dart';
+
+var startAlignment = Alignment.topLeft;
+var endAlignment = Alignment.bottomRight;
+
+class GradientContainer extends StatelessWidget {
+  //keeping all as stateful is waste. So create a new widget containing only that part as stateful
+  const GradientContainer(this.colorValues, {super.key});
+  final List<Color> colorValues;
+  final activeDice = 'assets/images/dice-4.png';
+  void rollDice() {
+    //activeDice = 'assets/images/dice-3.png';
+  }
+
+  @override
+  Widget build(context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: colorValues,
+          begin: startAlignment,
+          end: endAlignment,
+        ),
+      ),
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              activeDice,
+              width: 200,
+            ),
+            TextButton(
+              onPressed: rollDice,
+              style: TextButton.styleFrom(
+                //padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.only(top: 20),
+                foregroundColor: Colors.white,
+                textStyle: const TextStyle(
+                  fontSize: 28,
+                ),
+              ),
+              child: const Text('Roll Dice'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
